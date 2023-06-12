@@ -6,7 +6,7 @@ const {
 } = require("express-validator")
 
 const validateCreate = [
-	check("name")
+	check("email")
 		.exists()
 		.isEmail()
 		.withMessage("El campo name debe ser un email"),

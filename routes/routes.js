@@ -14,6 +14,10 @@ const {
 	updateUser,
 } = require("../controllers/User")
 
+const { login } = require("../controllers/Auth")
+
+const { verifyToken } = require("../middlewares/verifyToken")
+
 const router = express.Router()
 
 router.post("/create-user", validateCreate, createUser)
@@ -24,7 +28,9 @@ router.get(
 	validateGetWithQueryStrings,
 	readUsers
 )
-router.get("/read-users", readUsers)
+router.get("/read-users", verifyToken, readUsers)
 router.get("/read-user/:id", readUser)
+
+router.post("/login", login)
 
 module.exports = router

@@ -1,20 +1,27 @@
 const bcrypt = require("bcrypt")
 const uuid = require("uuid")
+const jwt = require("jsonwebtoken")
 
 const UserModel = require("../models/User")
 
-async function getUsers(res) {
-	try {
-		await UserModel.find().then(response => {
-			const excludePassword = response.map(user => {
-				const { id, name, lastName, userName } = user
-				return { id, name, lastName, userName }
-			})
-			res.status(200).json(excludePassword)
-		})
-	} catch (error) {
-		res.status(400).json({ message: error.message })
-	}
+async function getUsers(req, res) {
+	jwt.verify(req.token, "rfrgrrrrrggg", async error => {
+		if (error) {
+			res.sendStatus(403)
+		} else {
+			try {
+				await UserModel.find().then(response => {
+					const excludePassword = response.map(user => {
+						const { id, name, lastName, userName } = user
+						return { id, name, lastName, userName }
+					})
+					res.status(200).json(excludePassword)
+				})
+			} catch (error) {
+				res.status(400).json({ message: error.message })
+			}
+		}
+	})
 }
 
 async function getUsersPaginated(req, res) {
@@ -45,11 +52,10 @@ async function getUsersPaginated(req, res) {
 
 async function createUser(req, res) {
 	try {
-		const { name, userName, lastName, password } = req.body
+		const { name, userName, lastName, password, email } = req.body
 
 		const salt = bcrypt.genSaltSync(10)
 		const hash = await bcrypt.hash(password, salt)
-		//const isMatch = await bcrypt.compare("rgtrgert", hash)
 
 		const data = new UserModel({
 			name,
@@ -57,10 +63,11 @@ async function createUser(req, res) {
 			userName,
 			lastName,
 			password: hash,
+			email,
 		})
 
 		data.save()
-		res.status(201).json(req.body)
+		res.status(201)
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}
@@ -122,7 +129,7 @@ async function readUser(req, res) {
 }
 
 async function readUsers(req, res) {
-	if (Object.keys(req.query).length === 0) getUsers(res)
+	if (Object.keys(req.query).length === 0) getUsers(req, res)
 	else getUsersPaginated(req, res)
 }
 
