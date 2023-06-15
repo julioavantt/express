@@ -4,7 +4,11 @@ const {
 	validateCreate,
 	validateDelete,
 	validateGetWithQueryStrings,
-} = require("../validators/user")
+} = require("../middlewares/validators/user")
+
+const {
+	validateCreateCourse,
+} = require("../middlewares/validators/course")
 
 const {
 	createUser,
@@ -16,7 +20,15 @@ const {
 
 const { login } = require("../controllers/Auth")
 
+const {
+	readCourses,
+	createCourse,
+	deleteCourse,
+	updateCourse,
+} = require("../controllers/Course")
+
 const { verifyToken } = require("../middlewares/verifyToken")
+const { verifyIsAdmin } = require("../middlewares/verifyIsAdmin")
 
 const router = express.Router()
 
@@ -32,5 +44,20 @@ router.get("/read-users", verifyToken, readUsers)
 router.get("/read-user/:id", readUser)
 
 router.post("/login", login)
+
+router.get("/read-courses", readCourses)
+router.post(
+	"/create-course",
+	validateCreateCourse,
+	verifyIsAdmin,
+	verifyToken,
+	createCourse
+)
+router.delete(
+	"/delete-course/:id/:user_id",
+	verifyToken,
+	deleteCourse
+)
+router.put("/update-course", verifyToken, updateCourse)
 
 module.exports = router

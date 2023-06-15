@@ -52,7 +52,8 @@ async function getUsersPaginated(req, res) {
 
 async function createUser(req, res) {
 	try {
-		const { name, userName, lastName, password, email } = req.body
+		const { name, userName, lastName, password, email, role } =
+			req.body
 
 		const salt = bcrypt.genSaltSync(10)
 		const hash = await bcrypt.hash(password, salt)
@@ -64,10 +65,11 @@ async function createUser(req, res) {
 			lastName,
 			password: hash,
 			email,
+			role,
 		})
 
 		data.save()
-		res.status(201)
+		res.status(201).json({ created: true })
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}

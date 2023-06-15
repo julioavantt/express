@@ -2,33 +2,30 @@ const mongoose = require("mongoose")
 
 const { model, Schema } = mongoose
 
-//! Creamos la estructura de un tipo de documento (users)
-const userSchema = new Schema({
+//! Creamos la estructura de un tipo de documento (courses)
+const courseSchema = new Schema({
 	id: String,
-	name: String,
-	lastName: {
+	title: {
 		type: String,
 		required: true,
 	},
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-	},
-	userName: {
+	img: {
 		type: String,
 		required: true,
 	},
-	password: {
+	detail: {
 		type: String,
 		required: true,
 	},
-	role: {
+	mentor: {
 		type: String,
-		enum: ["admin", "client"],
+		required: true,
+	},
+	img_mentor: {
+		type: String,
 		required: true,
 	},
 })
 
 //! Como primer parametro, va el nombre de la coleccion
-module.exports = model("Users", userSchema)
+module.exports = model("Courses", courseSchema)
