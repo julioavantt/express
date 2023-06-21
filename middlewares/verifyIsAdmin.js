@@ -1,11 +1,6 @@
-function verifyIsAdmin(req, res, next) {
-	const role = req.body.role
-
-	if (role === "admin") {
-		next()
-	} else {
-		res.sendStatus(403)
-	}
-}
+const verifyIsAdmin = (req, res, next) =>
+	req.role === "admin"
+		? next()
+		: res.status(403).json({ message: "Invalid credentials" })
 
 module.exports = { verifyIsAdmin }

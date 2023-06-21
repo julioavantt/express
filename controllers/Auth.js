@@ -1,12 +1,13 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
+const uuid = require("uuid")
 
 const UserModel = require("../models/User")
 
-async function login(req, res) {
+function login(req, res) {
 	const { email, password } = req.body
 
-	await UserModel.findOne({ email }).then(async response => {
+	UserModel.findOne({ email }).then(async response => {
 		if (response?.id) {
 			const isMatch = await bcrypt.compare(
 				password,
@@ -15,13 +16,18 @@ async function login(req, res) {
 
 			if (isMatch) {
 				jwt.sign(
-					{ user: response },
-					"rfrgrrrrrggg",
+					{ user: { role: response.role, id: response.id } },
+					process.env.SECRET,
+					{
+						expiresIn: "5h",
+					},
 					(err, token) => {
-						res.status(200).json({
-							token: token,
-							user: response,
-						})
+						if (err) res.sendStatus(403)
+						else
+							res.status(200).json({
+								token,
+								user: response,
+							})
 					}
 				)
 			} else {
@@ -30,13 +36,39 @@ async function login(req, res) {
 				})
 			}
 		} else {
-			res.status(200).json({
-				message: `Document not found.`,
+			res.status(401).json({
+				message: "Invalid credentials",
 			})
 		}
 	})
 }
 
+async function register(req, res) {
+	try {
+		const { name, userName, lastName, password, email, role } =
+			req.body
+
+		const salt = bcrypt.genSaltSync(10)
+		const hash = await bcrypt.hash(password, salt)
+
+		const data = new UserModel({
+			name,
+			id: uuid.v4(),
+			userName,
+			lastName,
+			password: hash,
+			email,
+			role,
+		})
+
+		data.save()
+		res.status(201).json({ created: true })
+	} catch (error) {
+		res.status(400).json({ message: error.message })
+	}
+}
+
 module.exports = {
 	login,
+	register,
 }

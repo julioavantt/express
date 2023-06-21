@@ -1,27 +1,17 @@
-const bcrypt = require("bcrypt")
-const uuid = require("uuid")
-const jwt = require("jsonwebtoken")
-
 const UserModel = require("../models/User")
 
-async function getUsers(req, res) {
-	jwt.verify(req.token, "rfrgrrrrrggg", async error => {
-		if (error) {
-			res.sendStatus(403)
-		} else {
-			try {
-				await UserModel.find().then(response => {
-					const excludePassword = response.map(user => {
-						const { id, name, lastName, userName } = user
-						return { id, name, lastName, userName }
-					})
-					res.status(200).json(excludePassword)
-				})
-			} catch (error) {
-				res.status(400).json({ message: error.message })
-			}
-		}
-	})
+async function getUsers(_, res) {
+	try {
+		await UserModel.find().then(response => {
+			const excludePassword = response.map(user => {
+				const { id, name, lastName, userName } = user
+				return { id, name, lastName, userName }
+			})
+			res.status(200).json(excludePassword)
+		})
+	} catch (error) {
+		res.status(400).json({ message: error.message })
+	}
 }
 
 async function getUsersPaginated(req, res) {
@@ -45,31 +35,6 @@ async function getUsersPaginated(req, res) {
 			data,
 			total: count,
 		})
-	} catch (error) {
-		res.status(400).json({ message: error.message })
-	}
-}
-
-async function createUser(req, res) {
-	try {
-		const { name, userName, lastName, password, email, role } =
-			req.body
-
-		const salt = bcrypt.genSaltSync(10)
-		const hash = await bcrypt.hash(password, salt)
-
-		const data = new UserModel({
-			name,
-			id: uuid.v4(),
-			userName,
-			lastName,
-			password: hash,
-			email,
-			role,
-		})
-
-		data.save()
-		res.status(201).json({ created: true })
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}
@@ -136,7 +101,6 @@ async function readUsers(req, res) {
 }
 
 module.exports = {
-	createUser,
 	deleteUser,
 	readUser,
 	readUsers,

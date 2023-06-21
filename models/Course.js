@@ -27,5 +27,7 @@ const courseSchema = new Schema({
 	},
 })
 
+courseSchema.index({ title: "text", detail: "text", mentor: "text" })
+
 //! Como primer parametro, va el nombre de la coleccion
 module.exports = model("Courses", courseSchema)
