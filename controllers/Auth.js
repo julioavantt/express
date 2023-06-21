@@ -16,18 +16,28 @@ function login(req, res) {
 
 			if (isMatch) {
 				jwt.sign(
-					{ user: { role: response.role, id: response.id } },
+					{
+						user: {
+							role: response.role,
+							id: response.id,
+						},
+					},
 					process.env.SECRET,
 					{
 						expiresIn: "5h",
 					},
 					(err, token) => {
 						if (err) res.sendStatus(403)
-						else
+						else {
 							res.status(200).json({
 								token,
-								user: response,
+								user: {
+									email: response.email,
+									id: response.id,
+									name: response.name,
+								},
 							})
+						}
 					}
 				)
 			} else {

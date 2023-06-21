@@ -46,6 +46,7 @@ router.get("/read-user/:id", verifyToken, readUser)
 router.post("/login", login)
 
 router.get("/read-courses", readCourses)
+
 router.post(
 	"/create-course",
 	validateCreateCourse,
@@ -57,7 +58,7 @@ router.post(
 router.get("/search-courses", searchCourses)
 
 router.delete(
-	"/delete-course/:id/:user_id",
+	"/delete-course/:id",
 	verifyToken,
 	verifyIsAdmin,
 	deleteCourse

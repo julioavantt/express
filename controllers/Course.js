@@ -46,26 +46,18 @@ async function createCourse(req, res) {
 }
 
 async function deleteCourse(req, res) {
-	const { id: course_id, user_id } = req.params
+	const { id } = req.params
 
 	try {
-		UserModel.findOne({ id: user_id }).then(response => {
-			if (response?.role === "admin") {
-				CourseModel.deleteOne({ id: course_id }).then(
-					response => {
-						if (response.deletedCount) {
-							res.status(200).json({
-								message: `El curso con ${course_id} fue borrado exitosamente.`,
-							})
-						} else {
-							res.status(200).json({
-								message: `No se ha encontrado el curso: ${course_id}`,
-							})
-						}
-					}
-				)
+		CourseModel.deleteOne({ id }).then(response => {
+			if (response.deletedCount) {
+				res.status(200).json({
+					message: `El curso con ${id} fue borrado exitosamente.`,
+				})
 			} else {
-				res.sendStatus(403)
+				res.status(200).json({
+					message: `No se ha encontrado el curso: ${id}`,
+				})
 			}
 		})
 	} catch (error) {
@@ -74,30 +66,23 @@ async function deleteCourse(req, res) {
 }
 
 async function updateCourse(req, res) {
-	const { id: course_id, id_user, title } = req.body
+	const { id_course, modify } = req.body
 
 	try {
-		UserModel.findOne({ id: id_user }).then(response => {
-			if (response?.role === "admin") {
-				CourseModel.findOneAndUpdate(
-					{ id: course_id },
-					{ title }
-				).then(response => {
-					if (response.id) {
-						res.status(200).json({
-							message: `El curso con id ${response.id} fue editado exitosamente.`,
-							data: res.body,
-						})
-					} else {
-						res.status(200).json({
-							message: `No se ha encontrado el curso.`,
-						})
-					}
-				})
-			} else {
-				res.sendStatus(403)
+		CourseModel.findOneAndUpdate({ id: id_course }, modify).then(
+			response => {
+				if (response.id) {
+					res.status(200).json({
+						message: `El curso con id ${response.id} fue editado exitosamente.`,
+						data: res.body,
+					})
+				} else {
+					res.status(200).json({
+						message: `No se ha encontrado el curso.`,
+					})
+				}
 			}
-		})
+		)
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}
