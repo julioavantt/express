@@ -27,7 +27,8 @@ const courseSchema = new Schema({
 	},
 })
 
-courseSchema.index({ title: "text", detail: "text", mentor: "text" })
+//! Esto es necesario para que mongo indexe los campos que permiten busqueda x texto
+courseSchema.index({ title: "text", detail: "text" })
 
 //! Como primer parametro, va el nombre de la coleccion
 module.exports = model("Courses", courseSchema)

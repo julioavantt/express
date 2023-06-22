@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 
 const CourseModel = require("../models/Course")
 const UserModel = require("../models/User")
+const { text } = require("express")
 
 async function readCourses(_, res) {
 	try {

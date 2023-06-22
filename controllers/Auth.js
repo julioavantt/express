@@ -55,20 +55,17 @@ function login(req, res) {
 
 async function register(req, res) {
 	try {
-		const { name, userName, lastName, password, email, role } =
-			req.body
+		const { userName, password, email } = req.body
 
 		const salt = bcrypt.genSaltSync(10)
 		const hash = await bcrypt.hash(password, salt)
 
 		const data = new UserModel({
-			name,
 			id: uuid.v4(),
 			userName,
-			lastName,
 			password: hash,
 			email,
-			role,
+			role: "client",
 		})
 
 		data.save()

@@ -5,11 +5,6 @@ const { model, Schema } = mongoose
 //! Creamos la estructura de un tipo de documento (users)
 const userSchema = new Schema({
 	id: String,
-	name: String,
-	lastName: {
-		type: String,
-		required: true,
-	},
 	email: {
 		type: String,
 		required: true,

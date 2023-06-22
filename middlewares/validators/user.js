@@ -10,10 +10,6 @@ const validateCreate = [
 		.exists()
 		.isEmail()
 		.withMessage("El campo name debe ser un email"),
-	check("role")
-		.exists()
-		.isIn(["client"])
-		.withMessage("Es necesario que sea client"),
 	(req, res, next) => {
 		try {
 			validationResult(req).throw()
