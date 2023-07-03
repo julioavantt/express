@@ -35,6 +35,7 @@ function login(req, res) {
 									email: response.email,
 									id: response.id,
 									name: response.name,
+									role: response.role,
 								},
 							})
 						}
@@ -55,21 +56,26 @@ function login(req, res) {
 
 async function register(req, res) {
 	try {
-		const { userName, password, email } = req.body
+		const { username, password, email } = req.body
 
 		const salt = bcrypt.genSaltSync(10)
 		const hash = await bcrypt.hash(password, salt)
 
 		const data = new UserModel({
 			id: uuid.v4(),
-			userName,
+			username,
 			password: hash,
 			email,
 			role: "client",
 		})
 
-		data.save()
-		res.status(201).json({ created: true })
+		data
+			.save()
+			.then(() => res.status(201).json({ created: true }))
+			.catch(err => {
+				console.log(err)
+				res.status(400).json({ message: err.message })
+			})
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}

@@ -20,6 +20,7 @@ const {
 const { login, register } = require("../controllers/Auth")
 
 const {
+	readCourse,
 	readCourses,
 	createCourse,
 	deleteCourse,
@@ -33,6 +34,7 @@ const { verifyIsAdmin } = require("../middlewares/verifyIsAdmin")
 const router = express.Router()
 
 router.post("/create-user", validateCreate, register)
+
 router.delete("/delete-user/:id", validateDelete, deleteUser)
 router.put("/update-user", updateUser)
 router.get(
@@ -46,6 +48,8 @@ router.get("/read-user/:id", verifyToken, readUser)
 router.post("/login", login)
 
 router.get("/read-courses", readCourses)
+
+router.get("/read-course/:id", readCourse)
 
 router.post(
 	"/create-course",

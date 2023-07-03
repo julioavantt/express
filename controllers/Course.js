@@ -16,34 +16,35 @@ async function readCourses(_, res) {
 	}
 }
 
-async function createCourse(req, res) {
-	const { title, img, detail, mentor, img_mentor, creator_id } =
-		req.body
+async function readCourse(req, res) {
+	const { id } = req.params
 
 	try {
-		UserModel.findOne({ id: creator_id }).then(response => {
-			if (response?.role === "admin") {
-				const data = new CourseModel({
-					id: uuid.v4(),
-					title,
-					img,
-					detail,
-					mentor,
-					img_mentor,
-				})
-
-				data.save()
-				res.status(201).json({
-					success: true,
-					data: req.body,
-				})
-			} else {
-				res.sendStatus(403)
-			}
-		})
+		await CourseModel.findOne({ id }).then(response =>
+			res.status(200).json(response)
+		)
 	} catch (error) {
 		res.status(400).json({ message: error.message })
 	}
+}
+
+async function createCourse(req, res) {
+	const { title, img, detail, mentor, img_mentor } = req.body
+
+	const data = new CourseModel({
+		id: uuid.v4(),
+		title,
+		img,
+		detail,
+		mentor,
+		img_mentor,
+	})
+
+	data.save()
+	res.status(201).json({
+		success: true,
+		data: req.body,
+	})
 }
 
 async function deleteCourse(req, res) {
@@ -106,7 +107,6 @@ async function searchCourses(req, res) {
 				res.status(200).json({ data: response })
 			})
 	} catch (error) {
-		console.log(error)
 		res.status(400).json({ message: error.message })
 	}
 }
@@ -114,6 +114,7 @@ async function searchCourses(req, res) {
 module.exports = {
 	createCourse,
 	deleteCourse,
+	readCourse,
 	readCourses,
 	searchCourses,
 	updateCourse,
