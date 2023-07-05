@@ -1,0 +1,268 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Rolling",
+    "dateExported": "2023-07-05T22:15:02.736Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "1fe54e54-7b9f-4e9e-b48a-26d1e1a59c79",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "GET USER",
+            "url": "http://localhost:3340/api/read-user/5c862187-8899-4885-b756-0ad61ba83ba5",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-05-20T15:37:30.190Z",
+            "modified": "2023-06-06T00:23:47.120Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "36f93ecc-3d93-4bfd-b3f1-0ed8cbc91d80",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "GET USERS",
+            "url": "http://localhost:3331/api/read-users",
+            "method": "GET",
+            "sortNum": 12500,
+            "created": "2023-06-04T04:17:31.848Z",
+            "modified": "2023-06-21T23:17:03.528Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InJvbGUiOiJhZG1pbiIsImlkIjoiYzY4MzUyNjUtZmQ1NS00MjhkLTkzMjYtMGFjNWYzZTI5MDRjIiwicGF0aXRvIjoiY3VhYyJ9LCJpYXQiOjE2ODczODk0MTEsImV4cCI6MTY4NzQwNzQxMX0.wm1MmSqKNSqrm0AnOhNloSS5czGUXrXWxKm3Xo01xds"
+            },
+            "tests": []
+        },
+        {
+            "_id": "21e1dfe9-b664-4bfc-90b1-2e312f5be06e",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "GET USERS RAILWAY",
+            "url": "https://academy-hf5j.onrender.com/api/read-users",
+            "method": "GET",
+            "sortNum": 13750,
+            "created": "2023-06-04T22:26:07.646Z",
+            "modified": "2023-06-11T18:29:02.816Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8acfc1b0-53d8-4e82-ac42-9386a6e9732d",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "GET USERS QUERY STRING",
+            "url": "http://localhost:3331/api/read-users-paginated?size=3&page=1",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2023-06-04T04:05:36.401Z",
+            "modified": "2023-06-14T22:41:24.015Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "size",
+                    "value": "3",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "2fd9c4ba-eec7-4334-b487-4c82de2acc28",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "REGISTER",
+            "url": "http://localhost:3331/api/create-user",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-05-20T16:09:12.804Z",
+            "modified": "2023-06-22T00:15:49.272Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userName\": \"Isabela\",\n  \"password\": \"123456\",\n  \"email\": \"julio1@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "79538fda-daf3-4684-a536-7ed2be5760be",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "SEARCH COURSES",
+            "url": "http://localhost:3331/api/search-courses?q=throme",
+            "method": "GET",
+            "sortNum": 21875,
+            "created": "2023-06-21T02:36:51.691Z",
+            "modified": "2023-06-21T23:46:34.044Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "q",
+                    "value": "throme",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "9b2da5dd-fae4-4eb6-bcd8-fba52d054411",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "LOGIN",
+            "url": "http://localhost:3331/api/login",
+            "method": "POST",
+            "sortNum": 23750,
+            "created": "2023-06-11T19:07:34.497Z",
+            "modified": "2023-06-21T01:07:32.665Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\": \"123456\",\n  \"email\": \"julio@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "df428654-f6a2-4449-9146-fcb6758e142e",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "POST USER RAILWAY",
+            "url": "https://academy-l3qj.onrender.com/api/create-user",
+            "method": "POST",
+            "sortNum": 25000,
+            "created": "2023-06-04T23:09:20.166Z",
+            "modified": "2023-06-11T17:28:34.737Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"ss@ff.com\",\n  \"lastName\": \"Picapiedra\",\n  \"userName\": \"eswsslssa12erd\",\n  \"password\": \"rgtrgert\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9d057a83-427f-4898-8a45-cd071b6d78a7",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "DELETE USER",
+            "url": "http://localhost:3340/api/deleteUser/74cf035d-e915-4601-a8c7-4c9e4754acf6",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-06-03T20:52:38.396Z",
+            "modified": "2023-06-05T23:50:12.006Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c0aa9f73-c6c5-46a2-b0bd-5a76b3bb4aff",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "PUT USER",
+            "url": "http://localhost:3340/api/updateUser",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-06-03T21:16:16.611Z",
+            "modified": "2023-06-21T23:57:38.499Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"de7ee550-ab78-0f7a-8f3d-4a1036ff1caf\",\n  \"modify\": {\n      \"name\": \"papu\"\n  \"role\": \"admin\"\n  }\n\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4b54b1d9-2af8-42a1-b34f-cb2049a97b01",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "PUT COURSE",
+            "url": "http://localhost:3331/api/update-course",
+            "method": "PUT",
+            "sortNum": 45000,
+            "created": "2023-06-21T22:54:05.566Z",
+            "modified": "2023-06-21T23:02:07.679Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_course\": \"ed204ff6-cdca-4bb5-87ed-cb4ffaaae68b\",\n  \"modify\": {\n    \"title\": \"Next.js\",\n    \"mentor\": \"Paloma San Basilio\"\n  }\n}\n",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InJvbGUiOiJhZG1pbiIsImlkIjoiYzY4MzUyNjUtZmQ1NS00MjhkLTkzMjYtMGFjNWYzZTI5MDRjIn0sImlhdCI6MTY4NzM4NzY0MSwiZXhwIjoxNjg3NDA1NjQxfQ.r-DKsr6qQO5AMz10Qzc9pMWDkGhqyBX_pO9obditprc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4bd109d5-487e-48f0-93c0-a8ac30f09ef5",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "READ COURSES",
+            "url": "http://localhost:3331/api/read-courses",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-06-14T22:56:58.429Z",
+            "modified": "2023-06-14T22:57:42.031Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7199ca83-94b3-4297-89f7-d7a44ad1e326",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "CREATE COURSE",
+            "url": "http://localhost:3331/api/create-course",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-06-14T23:55:58.015Z",
+            "modified": "2023-06-14T23:55:58.015Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"PEPES1\",\n\t\t\t\"img\": \"https://x7y8v4y2.stackpathcdn.com/wp-content/uploads/2020/01/C%C3%B3mo-usar-Google-Chrome-dev-tools.jpg\",\n\t\t\t\"detail\": \"Últimas novedades sobre Chrome dev tools 400 hs de conocimiento en 4 minutos y medio.\",\n\t\t\t\"mentor\": \"Julio Avantt!\",\n\t\t\t\"img_mentor\": \"https://cdn.britannica.com/92/100692-050-5B69B59B/Mallard.jpg\",\n\t\t\t\"role\": \"admin\",\n\t\t\t\"creator_id\": \"3bc2b794-a3b7-4fc0-ad1b-641933915422\"\n}\t",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0OGE1MDlhNzAwOWUyYmMwZmMzYWZiZSIsImlkIjoiYzY4MzUyNjUtZmQ1NS00MjhkLTkzMjYtMGFjNWYzZTI5MDRjIiwibmFtZSI6IndmZmV3ZiIsImxhc3ROYW1lIjoiUGljYXBpZWRyYSIsImVtYWlsIjoianVsaW9AZ21haWwuY29tIiwidXNlck5hbWUiOiJlc3dzc2xzc2ExMmVyZCIsInBhc3N3b3JkIjoiJDJiJDEwJEdCZ3BpbVFFSDBUdkhKdUtjSlNFRS5CMlpGOXhzcHQ3UWdpNGlXM2xZeXpjcC5IWk9LMUFXIiwicm9sZSI6ImNsaWVudCIsIl9fdiI6MH0sImlhdCI6MTY4Njc4NjI0NX0.K25dWpssKKo5_rnkc0NaKZWHBKuqS-Rj8JiI4m0Az8"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4d6b3e9a-b381-4680-a9d1-31d7a133eb3d",
+            "colId": "e5ac653d-ddb5-429b-a7e4-51c1cf879198",
+            "containerId": "",
+            "name": "DELETE COURSE",
+            "url": "http://localhost:3331/api/delete-course/83e59953-2c6f-4517-b28b-8345d6fa3af8",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2023-06-15T00:05:12.959Z",
+            "modified": "2023-06-21T23:09:30.626Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InJvbGUiOiJhZG1pbiIsImlkIjoiYzY4MzUyNjUtZmQ1NS00MjhkLTkzMjYtMGFjNWYzZTI5MDRjIn0sImlhdCI6MTY4NzM4NzY0MSwiZXhwIjoxNjg3NDA1NjQxfQ.r-DKsr6qQO5AMz10Qzc9pMWDkGhqyBX_pO9obditprc"
+            },
+            "tests": []
+        }
+    ]
+}
