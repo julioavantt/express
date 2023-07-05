@@ -23,6 +23,9 @@ function login(req, res) {
 						},
 					},
 					process.env.SECRET,
+					{
+						expiresIn: "1d",
+					},
 					(err, token) => {
 						if (err) res.sendStatus(403)
 						else {
