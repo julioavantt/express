@@ -23,9 +23,6 @@ function login(req, res) {
 						},
 					},
 					process.env.SECRET,
-					{
-						expiresIn: "5h",
-					},
 					(err, token) => {
 						if (err) res.sendStatus(403)
 						else {
@@ -73,7 +70,6 @@ async function register(req, res) {
 			.save()
 			.then(() => res.status(201).json({ created: true }))
 			.catch(err => {
-				console.log(err)
 				res.status(400).json({ message: err.message })
 			})
 	} catch (error) {
